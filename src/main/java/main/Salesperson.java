@@ -1,9 +1,7 @@
 package main;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class Salesperson {
@@ -12,8 +10,11 @@ public class Salesperson {
     private String lastName;
     private String email;
     private String phoneNumber;
+    private Set<Lead> leads;
+    private Set<Note> notes;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "salesperson_id", nullable = false)
     public int getSalespersonId() {
         return salespersonId;
@@ -87,5 +88,25 @@ public class Salesperson {
         result = 31 * result + (email != null ? email.hashCode() : 0);
         result = 31 * result + (phoneNumber != null ? phoneNumber.hashCode() : 0);
         return result;
+    }
+
+    @OneToMany(fetch = FetchType.EAGER,mappedBy = "salesperson",cascade = CascadeType.ALL)
+    public Set<Lead> getLeads() {
+        return leads;
+    }
+
+    public void setLeads(Set<Lead> leads) {
+        leads.forEach(lead -> lead.setSalesperson(this));
+        this.leads = leads;
+    }
+
+    @OneToMany(fetch = FetchType.EAGER,mappedBy = "salesperson",cascade = CascadeType.ALL)
+    public Set<Note> getNotes() {
+        return notes;
+    }
+
+    public void setNotes(Set<Note> notes) {
+        notes.forEach(note -> note.setSalesperson(this));
+        this.notes = notes;
     }
 }

@@ -1,17 +1,17 @@
 package main;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class Stage {
     private int stageId;
     private String stageName;
     private String stageDescription;
+    private Set<Lead> leads;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "stage_id", nullable = false)
     public int getStageId() {
         return stageId;
@@ -62,5 +62,15 @@ public class Stage {
         result = 31 * result + (stageName != null ? stageName.hashCode() : 0);
         result = 31 * result + (stageDescription != null ? stageDescription.hashCode() : 0);
         return result;
+    }
+
+    @OneToMany(fetch = FetchType.EAGER,mappedBy = "stage",cascade = CascadeType.ALL)
+    public Set<Lead> getLeads() {
+        return leads;
+    }
+
+    public void setLeads(Set<Lead> leads) {
+        leads.forEach(lead -> lead.setStage(this));
+        this.leads = leads;
     }
 }

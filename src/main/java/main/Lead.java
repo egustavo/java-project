@@ -1,10 +1,8 @@
 package main;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.Set;
 
 @Entity
 public class Lead {
@@ -13,8 +11,44 @@ public class Lead {
     private String leadDescription;
     private int productQuantity;
     private BigDecimal leadTotal;
+    private Set<Note> notes;
+
+    Salesperson salesperson;
+    Stage stage;
+    Contact contact;
+
+    @ManyToOne()
+    @JoinColumn(name = "salesperson_id")
+    public Salesperson getSalesperson() {
+        return salesperson;
+    }
+
+    public void setSalesperson(Salesperson salesperson) {
+        this.salesperson = salesperson;
+    }
+
+    @ManyToOne()
+    @JoinColumn(name = "stage_id")
+    public Stage getStage() {
+        return stage;
+    }
+
+    public void setStage(Stage stage) {
+        this.stage = stage;
+    }
+
+    @ManyToOne()
+    @JoinColumn(name = "contact_id")
+    public Contact getContact() {
+        return contact;
+    }
+
+    public void setContact(Contact contact) {
+        this.contact = contact;
+    }
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "lead_id", nullable = false)
     public int getLeadId() {
         return leadId;
@@ -89,5 +123,15 @@ public class Lead {
         result = 31 * result + productQuantity;
         result = 31 * result + (leadTotal != null ? leadTotal.hashCode() : 0);
         return result;
+    }
+
+    @OneToMany(fetch = FetchType.EAGER,mappedBy = "lead",cascade = CascadeType.ALL)
+    public Set<Note> getNotes() {
+        return notes;
+    }
+
+    public void setNotes(Set<Note> notes) {
+        notes.forEach(note -> note.setLead(this));
+        this.notes = notes;
     }
 }

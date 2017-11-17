@@ -1,9 +1,6 @@
 package main;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
@@ -12,7 +9,31 @@ public class Note {
     private String noteContent;
     private Timestamp dateCreated;
 
+    Lead lead;
+    Salesperson salesperson;
+
+    @ManyToOne()
+    @JoinColumn(name = "lead_id")
+    public Lead getLead() {
+        return lead;
+    }
+
+    public void setLead(Lead lead) {
+        this.lead = lead;
+    }
+
+    @ManyToOne()
+    @JoinColumn(name = "salesperson_id")
+    public Salesperson getSalesperson() {
+        return salesperson;
+    }
+
+    public void setSalesperson(Salesperson salesperson) {
+        this.salesperson = salesperson;
+    }
+
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "note_id", nullable = false)
     public int getNoteId() {
         return noteId;

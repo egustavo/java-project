@@ -1,9 +1,7 @@
 package main;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class Contact {
@@ -13,8 +11,10 @@ public class Contact {
     private String email;
     private String phoneNumber;
     private String organization;
+    private Set<Lead> leads;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "contact_id", nullable = false)
     public int getContactId() {
         return contactId;
@@ -101,5 +101,15 @@ public class Contact {
         result = 31 * result + (phoneNumber != null ? phoneNumber.hashCode() : 0);
         result = 31 * result + (organization != null ? organization.hashCode() : 0);
         return result;
+    }
+
+    @OneToMany(fetch = FetchType.EAGER,mappedBy = "contact",cascade = CascadeType.ALL)
+    public Set<Lead> getLeads() {
+        return leads;
+    }
+
+    public void setLeads(Set<Lead> leads) {
+        leads.forEach(lead -> lead.setContact(this));
+        this.leads = leads;
     }
 }
