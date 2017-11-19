@@ -9,13 +9,13 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.Main">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.MainPageController">
    <children>
       <BorderPane layoutX="34.0" layoutY="14.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
             <VBox BorderPane.alignment="CENTER">
                <children>
-                  <MenuBar>
+                  <MenuBar fx:id="menubarMenu">
                     <menus>
                       <Menu mnemonicParsing="false" text="File">
                         <items>
@@ -40,8 +40,8 @@
          <center>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="40.0" BorderPane.alignment="CENTER">
                <children>
-                  <Button mnemonicParsing="false" prefWidth="104.0" text="Management" />
-                  <Button mnemonicParsing="false" prefWidth="104.0" text="Sales" />
+                  <Button fx:id="buttonManagement" mnemonicParsing="false" onAction="#changeScreenEmployeeManagement" prefWidth="104.0" text="Management" />
+                  <Button fx:id="buttonSales" mnemonicParsing="false" prefWidth="104.0" text="Sales" />
                </children>
             </HBox>
          </center>
