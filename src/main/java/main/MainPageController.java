@@ -8,19 +8,14 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.MenuBar;
 import javafx.stage.Stage;
 import org.springframework.stereotype.Component;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 @Component
 public class MainPageController implements Initializable {
-
-    @FXML
-    private MenuBar menubarMenu;
 
     @FXML
     private Button buttonManagement;
