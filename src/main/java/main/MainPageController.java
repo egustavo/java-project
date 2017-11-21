@@ -28,15 +28,15 @@ public class MainPageController implements Initializable {
 
     }
 
-    public void changeScreenEmployeeManagement(ActionEvent actionEvent) throws IOException {
+    public void changeScreenManagementOptions(ActionEvent actionEvent) throws IOException {
 
-        Node managementOptionsNode = (Node) actionEvent.getSource();
-        Stage managementOptionsStage = (Stage) managementOptionsNode.getScene().getWindow();
-        Parent managementOptionsParent = FXMLLoader.load(getClass().getResource("managementOptions.fxml"));
-        Scene managementOptionsScene = new Scene(managementOptionsParent);
+        Node node = (Node) actionEvent.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        Parent parent = FXMLLoader.load(getClass().getResource("managementOptions.fxml"));
+        Scene scene = new Scene(parent);
 
-        managementOptionsStage.setScene(managementOptionsScene);
-        managementOptionsStage.show();
+        stage.setScene(scene);
+        stage.show();
 
     }
 }

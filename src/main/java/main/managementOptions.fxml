@@ -12,7 +12,7 @@
          <center>
             <HBox alignment="CENTER" prefHeight="353.0" prefWidth="599.0" spacing="40.0" BorderPane.alignment="CENTER">
                <children>
-                  <Button fx:id="buttonEmployeeManagement" mnemonicParsing="false" prefWidth="174.0" text="Employee Management" />
+                  <Button fx:id="buttonEmployeeManagement" mnemonicParsing="false" onAction="#changeScreenEmployeeManagement" prefWidth="174.0" text="Employee Management" />
                   <Button fx:id="buttonViewReports" mnemonicParsing="false" prefWidth="174.0" text="View Reports" />
                </children>
             </HBox>
