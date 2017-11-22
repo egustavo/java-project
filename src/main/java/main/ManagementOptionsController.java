@@ -52,4 +52,16 @@ public class ManagementOptionsController implements Initializable {
         stage.show();
 
     }
+
+    public void changeScreenManagementReports(ActionEvent actionEvent) throws IOException {
+
+        Node node = (Node) actionEvent.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        Parent parent = FXMLLoader.load(getClass().getResource("managementReports.fxml"));
+        Scene scene = new Scene(parent);
+
+        stage.setScene(scene);
+        stage.show();
+
+    }
 }
