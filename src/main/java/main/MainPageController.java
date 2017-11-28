@@ -39,4 +39,18 @@ public class MainPageController implements Initializable {
         stage.show();
 
     }
+
+    public void changeScreenSalespersonHomepage(ActionEvent actionEvent) throws IOException {
+
+        Node node = (Node) actionEvent.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
+        Parent parent = FXMLLoader.load(getClass().getResource("salespersonHomepage.fxml"));
+        Scene scene = new Scene(parent);
+
+        stage.setScene(scene);
+        stage.show();
+
+    }
+
+
 }
