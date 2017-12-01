@@ -12,11 +12,14 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+@Component
 public class EmployeeManagementController implements Initializable {
 
     @FXML
@@ -73,9 +76,21 @@ public class EmployeeManagementController implements Initializable {
     @FXML
     private TextField textFieldPhoneNumber;
 
+    @Autowired
+    private SalespersonRepository salespersonRepository;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+    }
+
+    public void doAddSalesperson(ActionEvent actionEvent) {
+        String firstName = "Jon";
+        String lastName = "Snow";
+        String email = "this@mail.com";
+        String phoneNumber = "(324) 231-3123";
+        Salesperson salesperson = new Salesperson(firstName, lastName, email, phoneNumber);
+        salespersonRepository.save(salesperson);
     }
 
     public void changeScreenMainPage(ActionEvent actionEvent) throws IOException {

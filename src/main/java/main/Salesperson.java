@@ -13,6 +13,17 @@ public class Salesperson {
     private Set<Lead> leads;
     private Set<Note> notes;
 
+    public Salesperson(String firstName, String lastName, String email, String phoneNumber) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+    }
+
+    public Salesperson() {
+
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "salesperson_id", nullable = false)
